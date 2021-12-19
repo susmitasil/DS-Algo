@@ -36,13 +36,17 @@ class LinkedList:
         return count
 
     def insert_at_beginning(self,data):
-        node = Node(data,None,self.head)
-        self.head = node
-        self.tail = node
+        node = Node(data,None,None)
+        if(self.head == None):
+            self.head = self.tail = node
+        else:
+            node.next = self.head
+            self.head.prev = node
+            self.head = node
         
     def insert_at_end(self,data):
         if self.head==None:
-            self.head = Node(data, None, self.head)
+            self.head = self.tail = Node(data, None, None)
             return
         itr = self.head
         while itr.next:
